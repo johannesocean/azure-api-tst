@@ -48,11 +48,6 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
-      - name: Azure Login
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-
       - name: Download artifact from build job
         uses: actions/download-artifact@v2
         with:
@@ -65,4 +60,5 @@ jobs:
         with:
           app-name: 'azure-api-tst'
           slot-name: 'production'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_fcabd1419b42453cba4f738010305c39 }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE  }}
+          # publish-profile: ${{ secrets.AzureAppService_PublishProfile_fcabd1419b42453cba4f738010305c39 }}
